@@ -1,0 +1,54 @@
+<mat-card class="cardWithShadow">
+    <mat-card-content class="p-20">
+      <div class="d-flex justify-content-between align-items-start mb-3">
+        <span class="mat-body-2 f-w-600 text-muted">{{ cohort.id }}</span>
+        <div class="d-flex align-items-center">
+          <!-- <span class="badge rounded-pill bg-primary me-2">{{ cohort.notifications }}</span> -->
+          <!-- <mat-chip-set  class="me-8">
+            <mat-chip color="primary">
+              <mat-icon>person</mat-icon> {{cohort.notifications}}
+            </mat-chip>
+          </mat-chip-set> -->
+          <mat-chip-set class="me-2"> <mat-chip color="primary">
+            <mat-icon>person</mat-icon> {{cohort.notifications}}
+          </mat-chip>
+        </mat-chip-set>
+          <!-- <span class="badge rounded-pill bg-primary me-8"><i class="bi bi-person-fill"></i> {{ cohort.notifications }}</span> -->
+          <button mat-icon-button [matMenuTriggerFor]="menu">
+            <mat-icon>more_vert</mat-icon>
+          </button>
+          <mat-menu #menu="matMenu">
+            <button mat-menu-item (click)="viewDetails(cohort.id)">View Details</button>
+            <button mat-menu-item>Edit</button>
+            <button mat-menu-item>Delete</button>
+          </mat-menu>
+        </div>
+      </div>
+      <h5 class="mat-headline-5 f-w-600 m-b-5">{{ cohort.title }}</h5>
+      <span class="mat-body-2 text-muted">{{ cohort.technology }}</span>
+  
+      <div class="d-flex flex-wrap m-t-15">
+        <mat-chip-set class="flex-wrap">
+          <mat-chip color="primary" selected>{{ cohort.tag }}</mat-chip>
+          @for (filter of cohort.filterBy; track filter) {
+          <mat-chip>{{ filter }}</mat-chip>
+          }
+          @for (vertical of cohort.vertical; track vertical) {
+          <mat-chip>{{ vertical }}</mat-chip>
+          }
+        </mat-chip-set>
+      </div>
+  
+      <mat-divider class="my-3"></mat-divider>
+  
+      <div class="d-flex justify-content-between align-items-center">
+        <span class="mat-body-2 text-muted d-flex align-items-center">
+          <mat-icon class="me-1" color="blue">location_on</mat-icon>
+          {{ cohort.location }}
+        </span>
+        <button mat-button color="primary" (click)="viewDetails(cohort.id)">
+          View Details
+        </button>
+      </div>
+    </mat-card-content>
+  </mat-card>

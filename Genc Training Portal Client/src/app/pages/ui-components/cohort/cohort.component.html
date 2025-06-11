@@ -1,1 +1,198 @@
-<p>cohort works!</p>
+
+
+
+<div class="card bg-light-primary shadow-none position-relative overflow-hidden">
+    <div class="card-body px-4 py-3">
+      <div class="row align-items-center">
+        <!-- <div class="col-9">
+          <h4 class="fw-semibold mb-8">Cohorts</h4>
+           <nav aria-label="breadcrumb">
+            <ol class="breadcrumb">
+              <li class="breadcrumb-item">
+                <a class="text-muted text-decoration-none" href="../dashboard/dashboard.html">Home</a>
+              </li>
+              <li class="breadcrumb-item" aria-current="page">Cohorts</li>
+            </ol>
+          </nav> 
+        </div> -->
+        <!-- <div class="col-3">
+          <div class="text-center mb-n5">
+            <img
+              src="assets/images/breadcrumb/ChatBc.png"
+              alt=""
+              class="img-fluid mb-n4"
+            />
+          </div>
+        </div> -->
+      </div>
+    </div>
+  </div>
+  <mat-card class="cardWithShadow">
+    <mat-card-content class="p-24">
+      <div class="row">
+        <div class="col-md-12">
+          <h4 class="mb-24">Filter</h4>
+        </div>
+      </div>
+  
+      <div class="row m-b-20">
+        <div class="col-md-2">
+          <span class="mat-body-1 f-w-600">Filter By:</span>
+        </div>
+        <div class="col-md-10">
+          <mat-chip-listbox aria-label="Filter selection">
+            @for (option of filterByOptions; track option.value) {
+            <mat-chip-option
+              [selected]="selectedFilterBy.includes(option.value)"
+              (click)="toggleFilterBy(option.value)"
+              [color]="selectedFilterBy.includes(option.value) ? 'primary' : ''"
+              >{{ option.label }}</mat-chip-option
+            >
+            }
+          </mat-chip-listbox>
+        </div>
+      </div>
+  
+      <div class="row m-b-20">
+        <div class="col-md-2">
+          <span class="mat-body-1 f-w-600">Vertical:</span>
+        </div>
+        <div class="col-md-10">
+          <mat-chip-listbox aria-label="Vertical selection">
+            @for (option of verticalOptions; track option.value) {
+            <mat-chip-option
+              [selected]="selectedVerticals.includes(option.value)"
+              (click)="toggleVertical(option.value)"
+              [color]="selectedVerticals.includes(option.value) ? 'primary' : ''"
+              >{{ option.label }}</mat-chip-option
+            >
+            }
+          </mat-chip-listbox>
+        </div>
+      </div>
+  
+      <div class="row m-b-20">
+        <div class="col-md-2">
+          <span class="mat-body-1 f-w-600">Location:</span>
+        </div>
+        <div class="col-md-10">
+          <mat-chip-listbox aria-label="Location selection">
+            @for (option of locationOptions; track option.value) {
+            <mat-chip-option
+              [selected]="selectedLocations.includes(option.value)"
+              (click)="toggleLocation(option.value)"
+              [color]="selectedLocations.includes(option.value) ? 'primary' : ''"
+              >{{ option.label }}</mat-chip-option
+            >
+            }
+          </mat-chip-listbox>
+        </div>
+      </div>
+  
+  
+      <div class="row m-b-20">
+        <div class="col-md-2">
+          <span class="mat-body-1 f-w-600">Status:</span>
+        </div>
+        <div class="col-md-10">
+          <mat-chip-listbox aria-label="Status selection">
+            @for (option of statusOptions; track option.value) {
+            <mat-chip-option
+              [selected]="selectedStatuses.includes(option.value)"
+              (click)="toggleStatus(option.value)"
+              [color]="selectedStatuses.includes(option.value) ? 'primary' : ''"
+              >{{ option.label }}</mat-chip-option
+            >
+            }
+          </mat-chip-listbox>
+        </div>
+      </div>
+  
+      <div class="d-flex justify-content-between align-items-center mb-24">
+        <mat-form-field appearance="outline" class="w-25">
+          <mat-label>Search Cohorts</mat-label>
+          <input
+            matInput
+            (input)="onSearchInputChange($event)"
+            placeholder="Search by ID, Title, Tech, Tag..."
+          />
+          <mat-icon matSuffix>search</mat-icon>
+        </mat-form-field>
+        <div>
+          <!-- <button mat-flat-button color="primary" class="m-r-10">
+            <mat-icon>add</mat-icon> Add Connect Details
+          </button> -->
+          <button mat-flat-button color="accent" (click)="addCohort()">
+            <mat-icon>group_add</mat-icon> Add Cohort
+          </button>
+        </div>
+      </div>
+  
+      <mat-divider class="m-b-24"></mat-divider>
+  
+      <div class="row">
+        @for (cohort of filteredCohorts; track cohort.id) {
+        <!-- <div class="col-lg-4 col-md-6 mb-4">
+          <mat-card class="cardWithShadow">
+            <mat-card-content class="p-20">
+              <div class="d-flex justify-content-between align-items-start mb-3">
+                <span class="mat-body-2 f-w-600 text-muted">{{ cohort.id }}</span>
+                <div class="d-flex align-items-center">
+                  <span class="badge rounded-pill bg-primary me-2">{{ cohort.notifications }}</span>
+                  <button mat-icon-button [matMenuTriggerFor]="menu">
+                    <mat-icon>more_vert</mat-icon>
+                  </button>
+                  <mat-menu #menu="matMenu">
+                    <button mat-menu-item (click)="viewDetails(cohort.id)">View Details</button>
+                    <button mat-menu-item>Edit</button>
+                    <button mat-menu-item>Delete</button>
+                  </mat-menu>
+                </div>
+              </div>
+              <h5 class="mat-headline-5 f-w-600 m-b-5">{{ cohort.title }}</h5>
+              <span class="mat-body-2 text-muted">{{ cohort.technology }}</span>
+  
+              <div class="d-flex flex-wrap m-t-15">
+                <mat-chip-set class="flex-wrap">
+                  <mat-chip color="primary" selected>{{ cohort.tag }}</mat-chip>
+                  @for (filter of cohort.filterBy; track filter) {
+                    <mat-chip>{{ filter }}</mat-chip>
+                  }
+                  @for (vertical of cohort.vertical; track vertical) {
+                    <mat-chip>{{ vertical }}</mat-chip>
+                  }
+                </mat-chip-set>
+              </div>
+  
+              <mat-divider class="my-3"></mat-divider>
+  
+              <div class="d-flex justify-content-between align-items-center">
+                <span class="mat-body-2 text-muted d-flex align-items-center">
+                  <mat-icon class="me-1" color="warn">location_on</mat-icon>
+                  {{ cohort.location }}
+                </span>
+                <button mat-button color="primary" (click)="viewDetails(cohort.id)">
+                  View Details
+                </button>
+              </div>
+            </mat-card-content>
+          </mat-card>
+        </div> -->
+        <div class="col-lg-4 col-md-6 mb-4">
+            <app-cohort-card
+              [cohort]="cohort"
+              (viewDetailsClicked)="viewDetails($event)"
+              (editClicked)="editCohort($event)"   (deleteClicked)="deleteCohort($event)"
+            ></app-cohort-card>
+          </div>
+        } @empty {
+        <div class="col-12 text-center py-5">
+          <p class="mat-body-1">No cohorts found matching your criteria.</p>
+        </div>
+        }
+      </div>
+    </mat-card-content>
+  </mat-card>
+  
+  
+  

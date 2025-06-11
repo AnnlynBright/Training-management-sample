@@ -1,0 +1,67 @@
+.cohort-details-container {
+    padding: 20px; // Adjust based on your layout's padding
+  }
+  
+  .small-select {
+    width: 120px; // Adjust width for smaller selects
+  }
+  
+  .small-search-input {
+    width: 250px; // Adjust width for search input
+  }
+  
+  .header-actions {
+    display: flex;
+    align-items: center;
+    gap: 10px; // Space between elements
+  }
+  
+  /* Styles for stakeholder cards */
+  .badge {
+    font-size: 0.75em; // Smaller badge text
+    padding: 0.25em 0.5em;
+  }
+  
+  /* Styles for the dot indicators in the table */
+  .dot-indicator {
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      display: inline-block;
+      margin: 0 auto; // Center the dot if cell allows
+  }
+  
+  /* Override default mat-table cell padding for a more compact look */
+  table {
+    width: 100%;
+  }
+  
+  th.mat-header-cell, td.mat-cell {
+    padding: 8px 12px; // Adjust as needed
+    white-space: nowrap; // Prevent text wrapping in cells
+  }
+  
+  .mat-column-select {
+    padding-right: 0 !important; // Remove extra padding for checkbox column
+    width: 40px; // Smaller width for checkbox column
+  }
+  
+  /* Specific text color for "text-danger" or similar */
+  .text-danger {
+      color: #f44336; // Example red color
+  }
+  
+  /* Ensure images in table cells are styled */
+  td img {
+      border-radius: 50%;
+  }
+  
+  /* Basic flex for content inside mat-card-content if needed */
+  .mat-card-content .row {
+      display: flex;
+      flex-wrap: wrap;
+      margin: -10px; // Counteract padding of columns
+  }
+  .mat-card-content .row > div {
+      padding: 10px; // Padding for columns
+  }
