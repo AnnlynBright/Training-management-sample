@@ -11,32 +11,32 @@ export const navItems: NavItem[] = [
   {
     displayName: 'Technical Trainers',
     iconName: 'user-code',
-    route: '/ui-components/tech-trainer-list',
+    route: '/dashboard/tech-trainer-list',
   },
   {
     displayName: 'Coaches',
     iconName: 'user-check',
-    route: '/ui-components/coach-list',
+    route: '/dashboard/coach-list',
   },
   {
     displayName: 'Cohorts',
     iconName: 'school',
-    route: '/ui-components/cohort-list',
+    route: '/dashboard/cohort-list',
   },
   {
     displayName: 'BH Trainers',
     iconName: 'users-group',
-    route: '/ui-components/bh-trainer-list',
+    route: '/dashboard/bh-trainer-list',
   },
   {
     displayName: 'Mentors',
     iconName: 'users',
-    route: '/ui-components/mentor-list',
+    route: '/dashboard/mentor-list',
   },
   {
     displayName: 'Learning Paths',
     iconName: 'calendar-code',
-    route: '/ui-components/learning-paths',
+    route: '/dashboard/learning-paths',
   },
 
 ];
