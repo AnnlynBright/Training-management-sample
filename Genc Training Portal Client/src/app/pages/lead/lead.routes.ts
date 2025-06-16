@@ -4,6 +4,7 @@ import { Routes } from '@angular/router';
 import { AppTechTrainerComponent } from './tech-trainer/tech-trainer.component';
 import { AppCoachComponent } from './coach/coach.component';
 import { AppCohortComponent } from './cohort/cohort.component';
+import { DashboardComponent } from '../dashboard/dashboard.component';
 //import { AppCohortComponent } from './cohort/cohort.component';
 import { AppBhTrainerComponent } from './bh-trainer/bh-trainer.component';
 import { AppMentorComponent } from './mentor/mentor.component';
@@ -14,7 +15,10 @@ export const LeadRoutes: Routes = [
   {
     path: '',
     children: [
-
+      {
+        path: 'dashboard',
+        component: DashboardComponent,
+      },
       {
         path: 'tech-trainer-list',
         component: AppTechTrainerComponent,

@@ -280,7 +280,8 @@ export class AppCohortComponent implements OnInit, OnDestroy { // Implement OnDe
   }
 
   viewDetails(id: string): void {
-    this.router.navigate(['/ui-components/cohort-details/', id]);
+    //this.router.navigate(['/ui-components/cohort-details/', id]);
+    this.router.navigate(['/skilling-lead/cohort-details/', id]);
     console.log(`Navigating to details for Cohort ID: ${id}`);
   }
 

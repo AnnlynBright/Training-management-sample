@@ -1,4 +1,4 @@
-<div class="d-flex align-items-center justify-content-between">
+<!-- <div class="d-flex align-items-center justify-content-between">
     <app-branding></app-branding>
 
     @if(showToggle) {
@@ -7,4 +7,111 @@
         <i-tabler name="x" class="icon-20 d-flex"></i-tabler>
     </a>
     }
-</div>
+</div> -->
+
+<!-- src/app/layouts/sidebar/sidebar.component.html -->
+<div class="sidebar-container h-full flex flex-col bg-white shadow-lg rounded-r-lg">
+
+    <div class="d-flex align-items-center justify-content-between p-4 border-b border-gray-200">
+      <app-branding></app-branding>
+  
+      @if(showToggle) {
+      <a href="javascript:void(0)" (click)="toggleMobileNav.emit()"
+        class="d-flex justify-content-center icon-40 align-items-center text-gray-500 hover:text-gray-900 rounded-full transition duration-300 ease-in-out">
+        <i-tabler name="x" class="icon-20 d-flex"></i-tabler>
+      </a>
+      }
+    </div>
+  
+    <div class="sidebar-nav-scrollable flex-grow p-4 overflow-y-auto">
+      <mat-nav-list>
+        @for (navItem of filteredNavItems; track navItem.route) {
+          @if (navItem.navCap) {
+            <div class="nav-caption text-xs font-semibold text-gray-400 uppercase mt-4 mb-2 px-3">
+              {{ navItem.navCap }}
+            </div>
+          }
+  
+          <!-- Changed [routerLink]="[navItem.route]" to [routerLink]="getRouterLink(navItem)" -->
+          @if (navItem.route) {
+            <a mat-list-item [routerLink]="getRouterLink(navItem)" routerLinkActive="selected-link"
+              class="flex items-center px-3 py-2 rounded-lg text-gray-700 hover:bg-blue-50 transition-colors duration-200 ease-in-out mb-1">
+              <i-tabler [name]="navItem.iconName || 'circle-dot'" class="icon-20 mr-3"></i-tabler>
+              <span class="text-sm font-medium flex-grow">{{ navItem.displayName }}</span>
+              @if (navItem.chip && navItem.chipContent) {
+                <span class="ml-auto px-2 py-1 text-xs font-semibold rounded-full"
+                      [ngClass]="navItem.chipClass || 'bg-blue-100 text-blue-800'">
+                  {{ navItem.chipContent }}
+                </span>
+              }
+            </a>
+          } @else if (navItem.children && navItem.children.length > 0) {
+            <mat-expansion-panel class="sidebar-expansion-panel shadow-none mb-1">
+              <mat-expansion-panel-header class="px-3 py-2 rounded-lg text-gray-700 hover:bg-blue-50 transition-colors duration-200 ease-in-out">
+                <mat-panel-title class="flex items-center">
+                  <i-tabler [name]="navItem.iconName || 'folder'" class="icon-20 mr-3"></i-tabler>
+                  <span class="text-sm font-medium flex-grow">{{ navItem.displayName }}</span>
+                </mat-panel-title>
+              </mat-expansion-panel-header>
+              <mat-nav-list class="sub-menu pl-6">
+                @for (childItem of navItem.children; track childItem.route) {
+                  <!-- Nested items will also use getRouterLink if they have isRoleRooted: true -->
+                  @if (childItem.route && (!childItem.roles || childItem.roles.includes(userRoleService.getPrimaryRole() || ''))) {
+                    <a mat-list-item [routerLink]="getRouterLink(childItem)" routerLinkActive="selected-link"
+                       class="flex items-center px-3 py-2 rounded-lg text-gray-700 hover:bg-blue-50 transition-colors duration-200 ease-in-out mb-1">
+                      <i-tabler [name]="childItem.iconName || 'dot'" class="icon-16 mr-2"></i-tabler>
+                      <span class="text-sm">{{ childItem.displayName }}</span>
+                    </a>
+                  }
+                }
+              </mat-nav-list>
+            </mat-expansion-panel>
+          }
+        }
+      </mat-nav-list>
+    </div>
+  
+    <div class="sidebar-footer p-4 border-t border-gray-200">
+      <button mat-flat-button color="primary" class="w-full">
+        <i-tabler name="logout" class="icon-20 mr-2"></i-tabler> Logout
+      </button>
+    </div>
+  
+  </div>
+  
+  <style>
+    .sidebar-container {
+      width: 250px;
+      height: 100vh;
+      box-sizing: border-box;
+    }
+    .sidebar-nav-scrollable {
+      scrollbar-width: thin;
+      scrollbar-color: #cbd5e0 #edf2f7;
+    }
+    .sidebar-nav-scrollable::-webkit-scrollbar {
+      width: 8px;
+    }
+    .sidebar-nav-scrollable::-webkit-scrollbar-track {
+      background: #edf2f7;
+    }
+    .sidebar-nav-scrollable::-webkit-scrollbar-thumb {
+      background-color: #cbd5e0;
+      border-radius: 4px;
+      border: 2px solid #edf2f7;
+    }
+    .selected-link {
+      background-color: #e0f2f7;
+      color: #007bff;
+      font-weight: 600;
+    }
+    .mat-nav-list .mat-list-item {
+      height: auto !important;
+    }
+    .mat-expansion-panel {
+      background: transparent;
+    }
+    .mat-expansion-panel-header {
+      padding: 0;
+    }
+  </style>

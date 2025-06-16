@@ -1,5 +1,6 @@
 import { Component, ViewEncapsulation } from '@angular/core';
-import { MaterialModule } from '../../material.module';
+//import { MaterialModule } from '../../material.module';
+import { MaterialModule } from 'src/app/material.module';
 
 import { AppCardComponent } from 'src/app/components/card/card.component';
 
@@ -14,4 +15,4 @@ import { AppCardComponent } from 'src/app/components/card/card.component';
   templateUrl: './dashboard.component.html',
   encapsulation: ViewEncapsulation.None,
 })
-export class DashboardComponent { }
+export class TechDashboardComponent { }

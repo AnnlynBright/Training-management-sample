@@ -8,13 +8,17 @@ import { AppCohortComponent } from './cohort/cohort.component';
 import { AppBhTrainerComponent } from './bh-trainer/bh-trainer.component';
 import { AppMentorComponent } from './mentor/mentor.component';
 import { AppLearningPathComponent } from './learning-path/learning-path.component';
+import { DashboardComponent } from '../dashboard/dashboard.component';
 //import { CohortDetailsComponent } from './cohort-components/cohort-details/cohort-details.component';
 import { CohortDetailsComponent } from 'src/app/components/cohort-components/cohort-details/cohort-details.component';
 export const CoachRoutes: Routes = [
   {
     path: '',
     children: [
-
+      {
+        path: 'dashboard',
+        component: DashboardComponent,
+      },
       {
         path: 'tech-trainer-list',
         component: AppTechTrainerComponent,

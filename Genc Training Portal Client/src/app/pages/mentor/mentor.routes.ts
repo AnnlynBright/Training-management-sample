@@ -2,6 +2,7 @@ import { Routes } from '@angular/router';
 
 // ui
 import { AppTechTrainerComponent } from './tech-trainer/tech-trainer.component';
+import { DashboardComponent } from '../dashboard/dashboard.component';
 import { AppCoachComponent } from './coach/coach.component';
 import { AppCohortComponent } from './cohort/cohort.component';
 //import { AppCohortComponent } from './cohort/cohort.component';
@@ -14,7 +15,11 @@ export const MentorRoutes: Routes = [
   {
     path: '',
     children: [
-
+     
+      {
+        path: 'dashboard',
+        component: DashboardComponent,
+      },
       {
         path: 'tech-trainer-list',
         component: AppTechTrainerComponent,

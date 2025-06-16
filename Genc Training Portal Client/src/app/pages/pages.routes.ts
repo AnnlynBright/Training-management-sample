@@ -23,7 +23,8 @@ export const PagesRoutes: Routes = [
     data: {
       title: 'Dashboard', // You can change this to 'Home' or 'Overview' if preferred
       urls: [
-        { title: 'Home', url: '/dashboard' }, // Updated title to be more general
+        //{ title: 'Home', url: '/dashboard' }, // Updated title to be more general
+        { title: 'Home', url: '/skilling-lead' },
       ],
     },
     children: [
